@@ -8,8 +8,40 @@
 
 #import "APTransitionDirector.h"
 #import <objc/runtime.h>
+#pragma mark - RUNTimeHelper
+@interface RuntimeHelper : NSObject
+@end
+@implementation RuntimeHelper
+#pragma mark helper for UIViewController
++(void)superPresentViewController:(id)vc animated:(BOOL)animated fromViewController:(id)rootVC{
+    IMP imp=class_getMethodImplementation([UIViewController class],@selector(presentViewController:animated:completion:));
+    typedef void (*func)(id,SEL,id,BOOL,void (^)(void));
+    func f = (func)imp;
+    f(rootVC,@selector(presentViewController:animated:completion:),vc,animated,nil);
+}
++(void)superDismissViewControllerAnimated:(BOOL)animated fromViewController:(id)rootVC{
+    IMP imp=class_getMethodImplementation([UIViewController class],@selector(dismissViewControllerAnimated:completion:));
+    typedef void (*func)(id,SEL,BOOL,void (^)(void));
+    func f = (func)imp;
+    f(rootVC,@selector(presentViewController:animated:completion:),animated,nil);
+}
+#pragma mark  helper for navigation controller
++(void)superPushViewController:(id)vc animated:(BOOL)animated fromNavigationController:(id)nav{
+    IMP imp=class_getMethodImplementation([UINavigationController class],@selector(pushViewController:animated:));
+    typedef void (*func)(id,SEL,id,BOOL);
+    func f = (func)imp;
+    f(nav,@selector(pushViewController:animated:),vc,animated);
+}
++(UIViewController*)superPopViewControllerAnimated:(BOOL)animated fromNavigationController:(id)nav{
+    IMP imp=class_getMethodImplementation([UINavigationController class],@selector(popViewControllerAnimated:));
+    typedef UIViewController* (*func)(id,SEL,BOOL);
+    func f = (func)imp;
+    return f(nav,@selector(popViewControllerAnimated:),animated);
+}
 
+@end
 #pragma markr - global methods
+#pragma mark
 Class gestureClassForType(enum APGestureType type){
     Class cl;
     switch (type) {
@@ -31,6 +63,7 @@ Class gestureClassForType(enum APGestureType type){
     }
     return cl;
 }
+#pragma mark
 enum APGestureType typeFromGesture(UIGestureRecognizer*gesture){
     if ([gesture isKindOfClass:[UIPanGestureRecognizer class]]) {
         if ([gesture isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
@@ -96,28 +129,52 @@ enum APGestureType typeFromGesture(UIGestureRecognizer*gesture){
 }
 
 @end
-#pragma mark - RUNTimeHelper
-@interface RuntimeHelper : NSObject
-@end
-@implementation RuntimeHelper
-#pragma mark  helper for navigation controller
-+(void)superPushViewController:(id)vc animated:(BOOL)animated fromNavigationController:(id)nav{
-    IMP imp=class_getMethodImplementation([UINavigationController class],@selector(pushViewController:animated:));
-    typedef void (*func)(id,SEL,id,BOOL);
-    func f = (func)imp;
-    f(nav,@selector(pushViewController:animated:),vc,animated);
-}
-+(UIViewController*)superPopViewControllerAnimated:(BOOL)animated fromNavigationController:(id)nav{
-    IMP imp=class_getMethodImplementation([UINavigationController class],@selector(popViewControllerAnimated:));
-    typedef UIViewController* (*func)(id,SEL,BOOL);
-    func f = (func)imp;
-    return f(nav,@selector(popViewControllerAnimated:),animated);
-}
-@end
 
 #pragma mark - APTransitions Categorys
 
-
+#pragma mark  UIViewController
+@implementation UIViewController(APTransitions)
+-(void)APTransactionPresentViewController:(UIViewController*)viewController{
+  static  APTransitionDirector * a;
+    a=[[APTransitionDirector alloc]init];
+    if ([self conformsToProtocol:@protocol(APTransitionProtocol)]) {
+        id <APTransitionProtocol> obj = (NSObject<APTransitionProtocol> *)self;
+        [a setDelegate:obj];
+        [viewController setTransitioningDelegate:a];
+        
+    }
+//    [self presentViewController:viewController animated:YES completion:^{
+//        
+//    }];
+    
+   [RuntimeHelper superPresentViewController:viewController animated:YES fromViewController:self];
+  //  self.transitioningDelegate = nil;
+}
+-(void)APTransactionPresentViewController:(UIViewController*)viewController withTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol{
+    APTransitionDirector * a=[[APTransitionDirector alloc]init];
+    [a setDelegate:transitionProtocol];
+    [self setTransitioningDelegate:a];
+    [RuntimeHelper superPresentViewController:viewController animated:YES fromViewController:self];
+  //  self.transitioningDelegate = nil;
+}
+-(void)APTransactionDismissViewController{
+    APTransitionDirector * a=[[APTransitionDirector alloc]init];
+    if ([self conformsToProtocol:@protocol(APTransitionProtocol)]) {
+        id <APTransitionProtocol> obj = (NSObject<APTransitionProtocol> *)self;
+        [a setDelegate:obj];
+        [self setTransitioningDelegate:a];
+    }
+    [RuntimeHelper superDismissViewControllerAnimated:YES fromViewController:self];
+    self.transitioningDelegate = nil;
+}
+-(void)APTransactionDismissViewControllerWithTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol{
+    APTransitionDirector * a=[[APTransitionDirector alloc]init];
+    [a setDelegate:transitionProtocol];
+    [self setTransitioningDelegate:a];
+    [RuntimeHelper superDismissViewControllerAnimated:YES fromViewController:self];
+    self.transitioningDelegate = nil;
+}
+@end
 #pragma mark  UINavigationController
 @implementation UINavigationController (APTransitions)
 -(void)APTransactionPushViewController:(UIViewController*)viewController{
@@ -373,7 +430,7 @@ static NSMutableDictionary * gestureDict=nil;
 -(void)setPercent:(float)percent{
     _percent=percent;
     [self updateInteractiveTransition:percent];
-    _timeOffset=_percent*self.duration;
+    _timeOffset=_percent*self.animDuration;
     if (self.interactiveUpdateBlock) {
         self.interactiveUpdateBlock(self);
     }
@@ -588,5 +645,8 @@ static NSMutableDictionary * gestureDict=nil;
 -(void)dealloc{
     NSLog(@"DEALLOC: %@",self.description);
 }
+
+
+
 @end
 

@@ -84,6 +84,23 @@ typedef void (^ValueCallBlock)(UIGestureRecognizer * gesture,CGPoint firstTouch,
 
 @end
 #pragma mark - APTransitions Categorys
+
+#pragma mark  UIViewController
+@interface UIViewController(APTransitions)
+/**
+ * simple dismiss, sender(UIViewController) will be asked for conform APTransitionProtocol
+ *
+ */
+-(void)APTransactionPresentViewController:(UIViewController*)viewController;
+-(void)APTransactionPresentViewController:(UIViewController*)viewController withTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol;
+/**
+ * simple dismiss, sender(UIViewController) will be asked for conform APTransitionProtocol
+ *
+ */
+-(void)APTransactionDismissViewController;
+-(void)APTransactionDismissViewControllerWithTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol;
+@end
+
 #pragma mark  UINavigationController
 @interface UINavigationController(APTransitions)
 /**
