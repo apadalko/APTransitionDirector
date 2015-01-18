@@ -143,19 +143,15 @@ enum APGestureType typeFromGesture(UIGestureRecognizer*gesture){
         [viewController setTransitioningDelegate:a];
         
     }
-//    [self presentViewController:viewController animated:YES completion:^{
-//        
-//    }];
-    
    [RuntimeHelper superPresentViewController:viewController animated:YES fromViewController:self];
-  //  self.transitioningDelegate = nil;
+   viewController.transitioningDelegate = nil;
 }
 -(void)APTransactionPresentViewController:(UIViewController*)viewController withTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol{
     APTransitionDirector * a=[[APTransitionDirector alloc]init];
     [a setDelegate:transitionProtocol];
-    [self setTransitioningDelegate:a];
+    [viewController setTransitioningDelegate:a];
     [RuntimeHelper superPresentViewController:viewController animated:YES fromViewController:self];
-  //  self.transitioningDelegate = nil;
+    viewController.transitioningDelegate = nil;
 }
 -(void)APTransactionDismissViewController{
     APTransitionDirector * a=[[APTransitionDirector alloc]init];
