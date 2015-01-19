@@ -93,12 +93,12 @@ enum APGestureType typeFromGesture(UIGestureRecognizer*gesture){
     }
 }
 #pragma mark - APTransactionRule
-@interface APTransactionRule()
+@interface APTransitionRule()
 
 
 @end
 
-@implementation APTransactionRule : NSObject
+@implementation APTransitionRule : NSObject
 +(instancetype)ruleWithGesture:(enum APGestureType)gestureType{
     
     return [[self alloc] initWithGesture:gestureType];
@@ -264,7 +264,7 @@ static NSMutableDictionary * gestureDict=nil;
         [(UINavigationController*) self interactivePopGestureRecognizer].enabled = NO;
     }
 }
--(void)registerInteractiveTransactionWithRule:(APTransactionRule *)rule andTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol{
+-(void)registerInteractiveTransactionWithRule:(APTransitionRule *)rule andTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol{
     enum APGestureType type=rule.gestureType;
     UIGestureRecognizer * panGesture =[[gestureClassForType(type) alloc] initWithTarget:self action:@selector(recognizerMethod:)];
     NSMutableDictionary * inDict=[gestureDict valueForKey:self.description];
@@ -277,11 +277,11 @@ static NSMutableDictionary * gestureDict=nil;
     [panGesture setDelegate:self];
     
 }
--(void)registerInteractiveTransactionWithRule:(APTransactionRule *)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float, UIGestureRecognizer *))animationBlockForValue{
+-(void)registerInteractiveTransactionWithRule:(APTransitionRule *)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float, UIGestureRecognizer *))animationBlockForValue{
     
     [self registerInteractiveTransactionWithRule:rule withAnimationBlockForValueAndGesture:animationBlockForValue andUpdateBlockForValueAndGesture:nil];
 }
--(void)registerInteractiveTransactionWithRule:(APTransactionRule *)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float, UIGestureRecognizer *))animationBlockForValue andUpdateBlockForValueAndGesture:(void (^)(APTransitionDirector * , float, UIGestureRecognizer *))updateBlockForValue{
+-(void)registerInteractiveTransactionWithRule:(APTransitionRule *)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float, UIGestureRecognizer *))animationBlockForValue andUpdateBlockForValueAndGesture:(void (^)(APTransitionDirector * , float, UIGestureRecognizer *))updateBlockForValue{
     [self baseInteractiveGestureSetup];
     enum APGestureType type=rule.gestureType;
     UIGestureRecognizer * panGesture =[[gestureClassForType(type) alloc] initWithTarget:self action:@selector(recognizerMethod:)];
@@ -306,7 +306,7 @@ static NSMutableDictionary * gestureDict=nil;
         }
         
     }
-   APTransactionRule * rule=[inDict valueForKey:@"rule"];
+   APTransitionRule * rule=[inDict valueForKey:@"rule"];
     if (rule.gestureShouldBeginBlock) {
         return rule.gestureShouldBeginBlock(gestureRecognizer);
     }
@@ -317,7 +317,7 @@ static NSMutableDictionary * gestureDict=nil;
     static APTransitionDirector * animDirector=nil;
     static AnimationBlock (^animBlockForValue)(float,UIGestureRecognizer*);
     static void (^updateBlockForValue)(APTransitionDirector*,float,UIGestureRecognizer*);
-    static APTransactionRule * rule=nil;
+    static APTransitionRule * rule=nil;
     static float complPercent=0.5;
     static id<APTransitionProtocol> transitionProtocol;
     if (!rule) {
@@ -391,10 +391,10 @@ static NSMutableDictionary * gestureDict=nil;
 #pragma mark - APnteractiveTransitions Categorys
 @implementation UIViewController (APInteractiveTransitions)
 
--(APTransactionRule*)registerDissmisInteractiveTrasactionWithGesture:(enum APGestureType)gesture{
+-(APTransitionRule*)registerDissmisInteractiveTrasactionWithGesture:(enum APGestureType)gesture{
     
 
-     APTransactionRule * rule = [[APTransactionRule ruleWithGesture:gesture] actionBlockForValue:^ActionBlock(float value, BOOL initial) {
+     APTransitionRule * rule = [[APTransitionRule ruleWithGesture:gesture] actionBlockForValue:^ActionBlock(float value, BOOL initial) {
         
         
         if (initial) {

@@ -23,7 +23,7 @@ enum APGestureType {
 Class gestureClassForType(enum APGestureType type);
 enum APGestureType typeFromGesture(UIGestureRecognizer*gesture);
 
-@interface APTransactionRule : NSObject
+@interface APTransitionRule : NSObject
 //blocks define
 typedef void (^ActionBlock)();
 typedef ActionBlock (^ActionBlockForValue)(float value,BOOL initial);
@@ -132,16 +132,16 @@ typedef void (^ValueCallBlock)(UIGestureRecognizer * gesture,CGPoint firstTouch,
 #pragma mark -
 #pragma mark - APRuleInteractiveTransitions Categorys
 @interface UIViewController (APRuleInteractiveTransitions)
--(void)registerInteractiveTransactionWithRule:(APTransactionRule*)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float value,UIGestureRecognizer*gesture))animationBlockForValue;
+-(void)registerInteractiveTransactionWithRule:(APTransitionRule*)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float value,UIGestureRecognizer*gesture))animationBlockForValue;
 
--(void)registerInteractiveTransactionWithRule:(APTransactionRule*)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float value,UIGestureRecognizer*gesture))animationBlockForValue andUpdateBlockForValueAndGesture:(void (^)(APTransitionDirector * director, float value,UIGestureRecognizer * gesture))updateBlockForValue;
+-(void)registerInteractiveTransactionWithRule:(APTransitionRule*)rule withAnimationBlockForValueAndGesture:(AnimationBlock (^)(float value,UIGestureRecognizer*gesture))animationBlockForValue andUpdateBlockForValueAndGesture:(void (^)(APTransitionDirector * director, float value,UIGestureRecognizer * gesture))updateBlockForValue;
 @end
 #pragma mark -
 
-#pragma mark - APnteractiveTransitions Categorys
+#pragma mark - APInteractiveTransitions Categorys
 @interface UIViewController (APInteractiveTransitions)
 #warning not ready yet
--(APTransactionRule*)registerDissmisInteractiveTrasactionWithGesture:(enum APGestureType)gesture;
+-(APTransitionRule*)registerDissmisInteractiveTrasactionWithGesture:(enum APGestureType)gesture;
 
 
 @end
