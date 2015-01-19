@@ -28,11 +28,12 @@ self.navigationController.delegate=director;
 [self.navigationController pushViewController:viewController animated:YES]
 self.navigationController.delegate=nil;
 ```
-Now you have the animation block ,where u could use any animations that u want,to get all needed view use the
-APFastAcces category of APTransitionDirector.Lets Add Some Cool Animations:
+Now you have the animation block ,where u could use any animations that u want,to get all needed views use the
+APFastAcces category of APTransitionDirector. Lets Add Some Cool Animations:
 
 ``` objective-c
 APTransitionDirector * director=[[APTransitionDirector alloc]init];
+director.animDuration=0.5; //animation duration for director
 director.animBlock=^(APTransitionDirector * director ,void(^comlitBlock)() ){
     //getting all needed views
     UIView* toView = [director toView];
@@ -59,3 +60,8 @@ self.navigationController.delegate=director;
 self.navigationController.delegate=nil;
 ```
 Pls note: When u use non interactive animations dont forget to call the complitBlock
+
+Also u could use @property `(nonatomic)float animDuration;` to make all things clear.
+
+
+

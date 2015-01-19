@@ -181,10 +181,15 @@ enum APDirectorInteractiveState{
  *
  */
 @property (nonatomic,readonly)UINavigationControllerOperation navigationOperation ;
-
-
+/**
+ * used to detect if the transition is interactive, default = NO
+ *
+ */
 @property (nonatomic, assign, getter = isInteractive) BOOL interactive;
-
+/**
+ * used to detect the interactive state from enum APDirectorInteractiveState
+ *
+ */
 @property (nonatomic,readonly)enum APDirectorInteractiveState interactiveState;
 
 -(void)fastCancel;
