@@ -38,6 +38,12 @@
     func f = (func)imp;
     return f(nav,@selector(popViewControllerAnimated:),animated);
 }
++(void)superSelectIndex:(NSUInteger)idx fromTabBarController:(id)tab{
+    IMP imp=class_getMethodImplementation([UITabBarController class],@selector(setSelectedIndex:));
+    typedef UIViewController* (*func)(id,SEL,NSUInteger);
+    func f = (func)imp;
+    f(tab,@selector(popViewControllerAnimated:),idx);
+}
 
 @end
 #pragma markr - global methods
@@ -135,8 +141,7 @@ enum APGestureType typeFromGesture(UIGestureRecognizer*gesture){
 #pragma mark  UIViewController
 @implementation UIViewController(APTransitions)
 -(void)APTransactionPresentViewController:(UIViewController*)viewController{
-  static  APTransitionDirector * a;
-    a=[[APTransitionDirector alloc]init];
+    APTransitionDirector * a=[[APTransitionDirector alloc]init];
     if ([self conformsToProtocol:@protocol(APTransitionProtocol)]) {
         id <APTransitionProtocol> obj = (NSObject<APTransitionProtocol> *)self;
         [a setDelegate:obj];
@@ -207,18 +212,40 @@ enum APGestureType typeFromGesture(UIGestureRecognizer*gesture){
 }
 -(UIViewController*)APTransactionPopViewControllerWithTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol{
     APTransitionDirector * a=[[APTransitionDirector alloc]init];
-    
     [a setDelegate:transitionProtocol];
     [self setDelegate:a];
-    
     UIViewController * vc= [RuntimeHelper superPopViewControllerAnimated:YES fromNavigationController:self];
-    
     self.delegate=nil;
-    
     return vc;
-    
-
 }
+@end
+
+#pragma mark  UITabBarController
+
+@implementation UITabBarController (APTransitions)
+/**
+ * simple switch to index, sender(UITabBarController) will be asked for conform APTransitionProtocol
+ *
+ */
+-(void)APTransactionSelectIndex:(NSUInteger)idx{
+    APTransitionDirector * a=[[APTransitionDirector alloc]init];
+    if ([self conformsToProtocol:@protocol(APTransitionProtocol)]) {
+        id <APTransitionProtocol> obj = (NSObject<APTransitionProtocol> *)self;
+        [a setDelegate:obj];
+        [self setDelegate:a];
+        
+    }
+    [RuntimeHelper superSelectIndex:idx fromTabBarController:self];
+    self.delegate = nil;
+}
+-(void)APTransactionSelectIndex:(NSUInteger)idx withTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol{
+    APTransitionDirector * a=[[APTransitionDirector alloc]init];
+    [a setDelegate:transitionProtocol];
+    [self setDelegate:a];
+    [RuntimeHelper superSelectIndex:idx fromTabBarController:self];
+    self.delegate = nil;
+}
+
 @end
 #pragma mark -
 

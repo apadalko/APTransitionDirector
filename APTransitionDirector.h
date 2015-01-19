@@ -120,6 +120,13 @@ typedef void (^ValueCallBlock)(UIGestureRecognizer * gesture,CGPoint firstTouch,
 #pragma mark  UITabBarController
 
 @interface UITabBarController (APTransitions)
+/**
+ * simple switch to index, sender(UITabBarController) will be asked for conform APTransitionProtocol
+ *
+ */
+-(void)APTransactionSelectIndex:(NSUInteger)idx;
+-(void)APTransactionSelectIndex:(NSUInteger)idx withTransitionProtocol:(id<APTransitionProtocol>)transitionProtocol;
+
 @end
 
 #pragma mark -
