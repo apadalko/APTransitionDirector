@@ -373,7 +373,7 @@ static NSMutableDictionary * gestureDict=nil;
             if (animDirector.percent > complPercent && sender.state==UIGestureRecognizerStateEnded) {
                 canceled=NO;
             }
-            [animDirector endInteractiveTranscation:canceled complition:^{
+            [animDirector endInteractiveTranscation:canceled complition:^(APTransitionDirector*director){
             }];
             rule=nil;
             animDirector=nil;
@@ -475,7 +475,7 @@ static NSMutableDictionary * gestureDict=nil;
     [_context completeTransition:NO];
 
 }
--(void)endInteractiveTranscation:(BOOL)didComplete complition:(void (^)())complitBlock {
+-(void)endInteractiveTranscation:(BOOL)didComplete complition:(void (^)(APTransitionDirector * director))complitBlock {
     if (complitBlock) {
        self.interactiveComplitionBlock=complitBlock;
     }
@@ -508,7 +508,7 @@ static NSMutableDictionary * gestureDict=nil;
         [_context containerView].layer.speed=1;
     if (self.interactiveComplitionBlock) {
         
-        self.interactiveComplitionBlock();
+        self.interactiveComplitionBlock(self);
     }
 }
 
@@ -525,7 +525,7 @@ static NSMutableDictionary * gestureDict=nil;
     [_context completeTransition:NO];
     [_context containerView].layer.speed=1;
     if (self.interactiveComplitionBlock) {
-        self.interactiveComplitionBlock();
+        self.interactiveComplitionBlock(self);
     }
 }
 - (void)updateCancelAnimation {

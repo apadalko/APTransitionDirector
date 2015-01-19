@@ -114,10 +114,19 @@
                 }completion:^(BOOL finished) {
                     
                 }];
+                
+                
             };
             [self.navigationController popViewControllerAnimated:YES];
+            
+            break;
             case  UIGestureRecognizerStateChanged:
                 {
+                    
+                    animDirector.interactiveUpdateBlock=^(APTransitionDirector*director){
+                        UIView* fromView= [director fromView];
+                        [self addMaskToView:fromView withPosition:location];
+                    };
                     //update percent for every step
                     [animDirector setPercent:location.x/fullDistance];
                     break;
@@ -131,11 +140,12 @@
                 }
                 
                 //and end interactive transition at state ended or canceled
-                [animDirector endInteractiveTranscation:didComplete complition:^{
-                    animDirector = nil;
-                    self.navigationController.delegate = nil;
+                [animDirector endInteractiveTranscation:didComplete complition:^(APTransitionDirector*director){
+                    [director fromView].layer.mask=nil;
+
                 }];
-                
+                animDirector = nil;
+                self.navigationController.delegate = nil;
                 break;
             }
             default: {
@@ -146,6 +156,21 @@
         }
     }
     
+}
+-(void)addMaskToView:(UIView*)view withPosition:(CGPoint)maskPosition{
+   CAShapeLayer * maskLayer;
+    if (!view.layer.mask) {
+        maskLayer=[CAShapeLayer layer];
+        view.layer.mask=maskLayer;
+       maskLayer.fillRule=kCAFillRuleEvenOdd;
+    }else{
+        maskLayer=(CAShapeLayer*)view.layer.mask;
+    }
+    CGMutablePathRef path=CGPathCreateMutable();
+    CGPathAddRect(path, nil, view.bounds);
+    CGPathAddEllipseInRect(path, nil, CGRectMake(-28, maskPosition.y, 44, 44));
+    maskLayer.path=path;
+    CGPathRelease(path);
 }
 /*
 #pragma mark - Navigation

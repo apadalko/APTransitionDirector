@@ -11,7 +11,7 @@
 @class APTransitionDirector;
 typedef void(^UpdateBlock)(APTransitionDirector * transactionDirector);
 typedef void(^AnimationBlock)(APTransitionDirector * transactionDirector,void (^complitBlock)());
-typedef void(^InteractiveComplitionBlock)();
+typedef void(^InteractiveComplitionBlock)(APTransitionDirector * transactionDirector);
 enum APGestureType {
     APGestureTypeNone,
     APGestureTypePan,
@@ -197,7 +197,7 @@ enum APDirectorInteractiveState{
  * run to end interactive transaction
  *
  */
--(void)endInteractiveTranscation:(BOOL)didComplete complition:(void (^)())complitBlock ;
+-(void)endInteractiveTranscation:(BOOL)didComplete complition:(void (^)(APTransitionDirector * director))complitBlock ;
 
 @property (nonatomic)CFTimeInterval timeOffset;
 

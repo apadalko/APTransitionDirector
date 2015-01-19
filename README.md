@@ -135,9 +135,10 @@ and the screenPan Method:
 
             //and end interactive transition at state ended or canceled
             [animDirector endInteractiveTranscation:didComplete complition:^{
+
+            }];
             animDirector = nil;
             self.navigationController.delegate = nil;
-            }];
 
             break;
         }
@@ -159,7 +160,58 @@ So the main things that u should do:
 That looks nice but wee need some more, lets use the `@property (copy)UpdateBlock interactiveUpdateBlock`,
 so we could create unique interactive transaction :
 
+1. Let add new method that will create maskLayer to "fromView"
+``` objective-c
+-(void)addMaskToView:(UIView*)view withPosition:(CGPoint)maskPosition{
+    CAShapeLayer * maskLayer;
+    if (!view.layer.mask) {
+        maskLayer=[CAShapeLayer layer];
+        view.layer.mask=maskLayer;
+        maskLayer.fillRule=kCAFillRuleEvenOdd;
+    }else{
+        maskLayer=(CAShapeLayer*)view.layer.mask;
+    }
+        CGMutablePathRef path=CGPathCreateMutable();
+        CGPathAddRect(path, nil, view.bounds);
+        CGPathAddEllipseInRect(path, nil, CGRectMake(-28, maskPosition.y, 44, 44));
+        maskLayer.path=path;
+        CGPathRelease(path);
+}
+``` 
+2. make some updates in our UIGestureRecognizerStateEnded and UIGestureRecognizerStateChanged:
+``` objective-c
+//.....
+case  UIGestureRecognizerStateChanged:
+{
 
+animDirector.interactiveUpdateBlock=^(APTransitionDirector*director){
+UIView* fromView= [director fromView];
+[self addMaskToView:fromView withPosition:location];
+};
+//update percent for every step
+[animDirector setPercent:location.x/fullDistance];
+break;
+}
+
+case UIGestureRecognizerStateCancelled:
+case UIGestureRecognizerStateEnded: {
+
+BOOL didComplete=NO;
+if (pan.state==UIGestureRecognizerStateEnded){
+didComplete = (location.x/fullDistance)>0.5?YES:NO;
+}
+
+//and end interactive transition at state ended or canceled
+[animDirector endInteractiveTranscation:didComplete complition:^(APTransitionDirector*director){
+[director fromView].layer.mask=nil;
+
+}];
+animDirector = nil;
+self.navigationController.delegate = nil;
+break;
+}
+....
+```
 Ok, so now u have nice interactive and static transition.
 
 
