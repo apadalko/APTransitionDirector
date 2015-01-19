@@ -75,13 +75,12 @@ and the screenPan Method:
 ``` objective-c
 //BURootViewController.m
 - (void)screenPan:(UIGestureRecognizer*)pan {
-    UIGestureRecognizerState state = pan.state;
     CGPoint location = [pan locationInView:self.view];
     static CGPoint firstTouch;
     static float fullDistance=0;
     static APTransitionDirector * animDirector=nil;
 
-    switch (sender.state) {
+    switch (pan.state) {
         case UIGestureRecognizerStateBegan:
         {
 
