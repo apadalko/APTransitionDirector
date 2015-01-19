@@ -84,7 +84,7 @@ and the screenPan Method:
         case UIGestureRecognizerStateBegan:
         {
 
-            fullDistance=self.view.frame.size.width;
+            fullDistance=self.navigationController.view.frame.size.width;
             firstTouch=location;
             
             animDirector=[[APTransitionDirector alloc]init];
@@ -124,9 +124,10 @@ and the screenPan Method:
 
             BOOL didComplete=NO;
             if (pan.state==UIGestureRecognizerStateEnded){
-                didComplete = (mainD/d)>0.5?NO:YES;
+                didComplete = (mainD/d)>0.5?YES:NO;
             }
 
+//and end interactive transition at state ended or canceled
             [animDirector endInteractiveTranscation:didComplete complition:^{
             animDirector = nil;
             self.navigationController.delegate = nil;
@@ -144,12 +145,13 @@ and the screenPan Method:
 }
 ``` 
 So the main things that u should do:
-1.set director as interactive `animDirector.interactive=YES;`
-2.update director percent  `[animDirector setPercent:location.x/fullDistance];`
-3.and run director interactive endingMethod: `[animDirector endInteractiveTranscation:didComplete complition:^{}];`
+* set director as interactive `animDirector.interactive=YES;`
+* update director percent  `[animDirector setPercent:location.x/fullDistance];`
+* run director interactive endingMethod: `[animDirector endInteractiveTranscation:didComplete complition:^{}];`
 
 That looks nice but wee need some more, lets use the `@property (copy)UpdateBlock interactiveUpdateBlock`,
-so we could create unique interactive transaction
+so we could create unique interactive transaction :
+
 
 Ok, so now u have nice interactive and static transition.
 
