@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B87690741A6DA9DF00DA17A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B87690731A6DA9DF00DA17A4 /* main.m */; };
 		B87690771A6DA9DF00DA17A4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B87690761A6DA9DF00DA17A4 /* AppDelegate.m */; };
-		B876907A1A6DA9DF00DA17A4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B87690791A6DA9DF00DA17A4 /* ViewController.m */; };
 		B876907D1A6DA9DF00DA17A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B876907B1A6DA9DF00DA17A4 /* Main.storyboard */; };
 		B876907F1A6DA9DF00DA17A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B876907E1A6DA9DF00DA17A4 /* Images.xcassets */; };
 		B87690821A6DA9DF00DA17A4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B87690801A6DA9DF00DA17A4 /* LaunchScreen.xib */; };
@@ -35,8 +34,6 @@
 		B87690731A6DA9DF00DA17A4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B87690751A6DA9DF00DA17A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B87690761A6DA9DF00DA17A4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B87690781A6DA9DF00DA17A4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B87690791A6DA9DF00DA17A4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B876907C1A6DA9DF00DA17A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B876907E1A6DA9DF00DA17A4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B87690811A6DA9DF00DA17A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -98,8 +95,6 @@
 				B876909B1A6DAA2B00DA17A4 /* BURootViewController.m */,
 				B876909D1A6DAA3600DA17A4 /* BUViewController.h */,
 				B876909E1A6DAA3600DA17A4 /* BUViewController.m */,
-				B87690781A6DA9DF00DA17A4 /* ViewController.h */,
-				B87690791A6DA9DF00DA17A4 /* ViewController.m */,
 				B876907B1A6DA9DF00DA17A4 /* Main.storyboard */,
 				B876907E1A6DA9DF00DA17A4 /* Images.xcassets */,
 				B87690801A6DA9DF00DA17A4 /* LaunchScreen.xib */,
@@ -234,7 +229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B876907A1A6DA9DF00DA17A4 /* ViewController.m in Sources */,
 				B87690991A6DA9F700DA17A4 /* APTransitionDirector.m in Sources */,
 				B876909C1A6DAA2B00DA17A4 /* BURootViewController.m in Sources */,
 				B876909F1A6DAA3600DA17A4 /* BUViewController.m in Sources */,
@@ -430,6 +424,7 @@
 				B87690931A6DA9DF00DA17A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B87690941A6DA9DF00DA17A4 /* Build configuration list for PBXNativeTarget "BasicUsage-NavigationControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +433,7 @@
 				B87690961A6DA9DF00DA17A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

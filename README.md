@@ -212,9 +212,14 @@ case UIGestureRecognizerStateEnded: {
 }
 ....
 ```
-Ok, so now u have nice interactive and static transition.
-<img src="https://github.com/apadalko/APTransitionDirector/blob/master/Examples/gifs/nav.gif" alt="Basic Usage NavigayionController" width="480" height="360"/>
+Ok, so now u have nice interactive and static transition.This code is in examples as well (BasicUsage-NavigationController)
+u also could check some others examples there,like Basic Usage with TabbarController and ViewController.
+<img src="https://github.com/apadalko/APTransitionDirector/blob/master/Examples/gifs/nav.gif" alt="Basic Usage NavigationController" width="480" height="360"/>
 
-
+As u maybe noticed there are a little bit of extra code.To avoid this u could use APTransitionProtocol and `animDirector.delegate=someObject`;
+Its pretty easy to use, u could see this in BasicUsage(APTransitionProtocol)-NavigationController.
+As well u didnt need always to call `animDirector=nil` or `self.navigationController=nil` ,its up to you.(see the asicUsage(APTransitionProtocol)-NavigationController example)
+ 
+## Category (APTransitions) & APTransitionProtocol
 
 

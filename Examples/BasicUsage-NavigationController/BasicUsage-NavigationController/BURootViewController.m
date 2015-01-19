@@ -86,7 +86,6 @@
             
             fullDistance=self.navigationController.view.frame.size.width;
             firstTouch=location;
-            
             animDirector=[[APTransitionDirector alloc]init];
             animDirector.interactive=YES;
             animDirector.animDuration=0.33;

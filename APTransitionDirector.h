@@ -74,10 +74,8 @@ typedef void (^ValueCallBlock)(UIGestureRecognizer * gesture,CGPoint firstTouch,
  */
 -(void)animationTransition:(APTransitionDirector*) transitionDirector andComplitionBlock:(void(^)())complitBlock;
 @optional
--(void)animationInteractiveTransition:(APTransitionDirector*) transitionDirector  withPercentComplite:(float)percentComplite;
--(CGFloat)percentToCompliteInteractiveTransitionFor:(APTransitionDirector*)transitionDirector; // if not implemented return 0.5;
 /**
- * NOTE! IMPlementation of this method would be the main value for duration
+ * NOTE! Implementation of this method would be the main value for duration
  *
  */
 -(CGFloat)animationDurationFor:(APTransitionDirector*)transitionDirector;
@@ -158,7 +156,14 @@ enum APDirectorInteractiveState{
     APDirectorInteractiveStateFinishing
     
 };
-
+enum APDirectorOperation{
+    APDirectorOperationPop,
+    APDirectorOperationPush,
+    APDirectorOperationPresent,
+    APDirectorOperationDismiss,
+    APDirectorOperationSelectIndex
+    
+};
 
 @interface APTransitionDirector : UIPercentDrivenInteractiveTransition<UIViewControllerAnimatedTransitioning,UINavigationControllerDelegate,UIViewControllerInteractiveTransitioning,UITabBarControllerDelegate,UIViewControllerTransitioningDelegate>
 
@@ -180,7 +185,7 @@ enum APDirectorInteractiveState{
  * only for navigation controller;
  *
  */
-@property (nonatomic,readonly)UINavigationControllerOperation navigationOperation ;
+@property (nonatomic,readonly)enum APDirectorOperation transitionOperation ;
 /**
  * used to detect if the transition is interactive, default = NO
  *

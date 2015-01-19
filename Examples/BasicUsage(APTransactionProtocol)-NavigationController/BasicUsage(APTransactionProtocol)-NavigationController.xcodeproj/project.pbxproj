@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B8CF368B1A6DBDB500A05F2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CF368A1A6DBDB500A05F2D /* main.m */; };
+		B8CF368E1A6DBDB500A05F2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CF368D1A6DBDB500A05F2D /* AppDelegate.m */; };
+		B8CF36941A6DBDB500A05F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CF36921A6DBDB500A05F2D /* Main.storyboard */; };
+		B8CF36961A6DBDB500A05F2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CF36951A6DBDB500A05F2D /* Images.xcassets */; };
+		B8CF36991A6DBDB500A05F2D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8CF36971A6DBDB500A05F2D /* LaunchScreen.xib */; };
+		B8CF36A51A6DBDB500A05F2D /* BasicUsage_APTransactionProtocol__NavigationControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CF36A41A6DBDB500A05F2D /* BasicUsage_APTransactionProtocol__NavigationControllerTests.m */; };
+		B8CF36E21A6DBEC300A05F2D /* BUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CF36E11A6DBEC300A05F2D /* BUViewController.m */; };
+		B8CF36E51A6DBECF00A05F2D /* BURootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CF36E41A6DBECF00A05F2D /* BURootViewController.m */; };
+		B8CF36E81A6DBEFD00A05F2D /* APTransitionDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = B8CF36E71A6DBEFD00A05F2D /* APTransitionDirector.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B8CF369F1A6DBDB500A05F2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8CF367D1A6DBDB500A05F2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8CF36841A6DBDB500A05F2D;
+			remoteInfo = "BasicUsage(APTransactionProtocol)-NavigationController";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B8CF36851A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BasicUsage(APTransactionProtocol)-NavigationController.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8CF36891A6DBDB500A05F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8CF368A1A6DBDB500A05F2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B8CF368C1A6DBDB500A05F2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B8CF368D1A6DBDB500A05F2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B8CF36931A6DBDB500A05F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B8CF36951A6DBDB500A05F2D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B8CF36981A6DBDB500A05F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B8CF369E1A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BasicUsage(APTransactionProtocol)-NavigationControllerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8CF36A31A6DBDB500A05F2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8CF36A41A6DBDB500A05F2D /* BasicUsage_APTransactionProtocol__NavigationControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicUsage_APTransactionProtocol__NavigationControllerTests.m; sourceTree = "<group>"; };
+		B8CF36E01A6DBEC300A05F2D /* BUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUViewController.h; sourceTree = "<group>"; };
+		B8CF36E11A6DBEC300A05F2D /* BUViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUViewController.m; sourceTree = "<group>"; };
+		B8CF36E31A6DBECF00A05F2D /* BURootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BURootViewController.h; sourceTree = "<group>"; };
+		B8CF36E41A6DBECF00A05F2D /* BURootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BURootViewController.m; sourceTree = "<group>"; };
+		B8CF36E61A6DBEFD00A05F2D /* APTransitionDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APTransitionDirector.h; path = ../../APTransitionDirector.h; sourceTree = "<group>"; };
+		B8CF36E71A6DBEFD00A05F2D /* APTransitionDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APTransitionDirector.m; path = ../../APTransitionDirector.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B8CF36821A6DBDB500A05F2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8CF369B1A6DBDB500A05F2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B8CF367C1A6DBDB500A05F2D = {
+			isa = PBXGroup;
+			children = (
+				B8CF36E61A6DBEFD00A05F2D /* APTransitionDirector.h */,
+				B8CF36E71A6DBEFD00A05F2D /* APTransitionDirector.m */,
+				B8CF36871A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController */,
+				B8CF36A11A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationControllerTests */,
+				B8CF36861A6DBDB500A05F2D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B8CF36861A6DBDB500A05F2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8CF36851A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController.app */,
+				B8CF369E1A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationControllerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B8CF36871A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				B8CF368C1A6DBDB500A05F2D /* AppDelegate.h */,
+				B8CF368D1A6DBDB500A05F2D /* AppDelegate.m */,
+				B8CF36E31A6DBECF00A05F2D /* BURootViewController.h */,
+				B8CF36E41A6DBECF00A05F2D /* BURootViewController.m */,
+				B8CF36E01A6DBEC300A05F2D /* BUViewController.h */,
+				B8CF36E11A6DBEC300A05F2D /* BUViewController.m */,
+				B8CF36921A6DBDB500A05F2D /* Main.storyboard */,
+				B8CF36951A6DBDB500A05F2D /* Images.xcassets */,
+				B8CF36971A6DBDB500A05F2D /* LaunchScreen.xib */,
+				B8CF36881A6DBDB500A05F2D /* Supporting Files */,
+			);
+			path = "BasicUsage(APTransactionProtocol)-NavigationController";
+			sourceTree = "<group>";
+		};
+		B8CF36881A6DBDB500A05F2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8CF36891A6DBDB500A05F2D /* Info.plist */,
+				B8CF368A1A6DBDB500A05F2D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8CF36A11A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B8CF36A41A6DBDB500A05F2D /* BasicUsage_APTransactionProtocol__NavigationControllerTests.m */,
+				B8CF36A21A6DBDB500A05F2D /* Supporting Files */,
+			);
+			path = "BasicUsage(APTransactionProtocol)-NavigationControllerTests";
+			sourceTree = "<group>";
+		};
+		B8CF36A21A6DBDB500A05F2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8CF36A31A6DBDB500A05F2D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B8CF36841A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8CF36A81A6DBDB500A05F2D /* Build configuration list for PBXNativeTarget "BasicUsage(APTransactionProtocol)-NavigationController" */;
+			buildPhases = (
+				B8CF36811A6DBDB500A05F2D /* Sources */,
+				B8CF36821A6DBDB500A05F2D /* Frameworks */,
+				B8CF36831A6DBDB500A05F2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BasicUsage(APTransactionProtocol)-NavigationController";
+			productName = "BasicUsage(APTransactionProtocol)-NavigationController";
+			productReference = B8CF36851A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B8CF369D1A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8CF36AB1A6DBDB500A05F2D /* Build configuration list for PBXNativeTarget "BasicUsage(APTransactionProtocol)-NavigationControllerTests" */;
+			buildPhases = (
+				B8CF369A1A6DBDB500A05F2D /* Sources */,
+				B8CF369B1A6DBDB500A05F2D /* Frameworks */,
+				B8CF369C1A6DBDB500A05F2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B8CF36A01A6DBDB500A05F2D /* PBXTargetDependency */,
+			);
+			name = "BasicUsage(APTransactionProtocol)-NavigationControllerTests";
+			productName = "BasicUsage(APTransactionProtocol)-NavigationControllerTests";
+			productReference = B8CF369E1A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B8CF367D1A6DBDB500A05F2D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Alex Padalko";
+				TargetAttributes = {
+					B8CF36841A6DBDB500A05F2D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					B8CF369D1A6DBDB500A05F2D = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = B8CF36841A6DBDB500A05F2D;
+					};
+				};
+			};
+			buildConfigurationList = B8CF36801A6DBDB500A05F2D /* Build configuration list for PBXProject "BasicUsage(APTransactionProtocol)-NavigationController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B8CF367C1A6DBDB500A05F2D;
+			productRefGroup = B8CF36861A6DBDB500A05F2D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B8CF36841A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController */,
+				B8CF369D1A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationControllerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B8CF36831A6DBDB500A05F2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8CF36941A6DBDB500A05F2D /* Main.storyboard in Resources */,
+				B8CF36991A6DBDB500A05F2D /* LaunchScreen.xib in Resources */,
+				B8CF36961A6DBDB500A05F2D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8CF369C1A6DBDB500A05F2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B8CF36811A6DBDB500A05F2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8CF36E81A6DBEFD00A05F2D /* APTransitionDirector.m in Sources */,
+				B8CF368E1A6DBDB500A05F2D /* AppDelegate.m in Sources */,
+				B8CF36E51A6DBECF00A05F2D /* BURootViewController.m in Sources */,
+				B8CF368B1A6DBDB500A05F2D /* main.m in Sources */,
+				B8CF36E21A6DBEC300A05F2D /* BUViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8CF369A1A6DBDB500A05F2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8CF36A51A6DBDB500A05F2D /* BasicUsage_APTransactionProtocol__NavigationControllerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B8CF36A01A6DBDB500A05F2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8CF36841A6DBDB500A05F2D /* BasicUsage(APTransactionProtocol)-NavigationController */;
+			targetProxy = B8CF369F1A6DBDB500A05F2D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B8CF36921A6DBDB500A05F2D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8CF36931A6DBDB500A05F2D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B8CF36971A6DBDB500A05F2D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B8CF36981A6DBDB500A05F2D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B8CF36A61A6DBDB500A05F2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B8CF36A71A6DBDB500A05F2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B8CF36A91A6DBDB500A05F2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "BasicUsage(APTransactionProtocol)-NavigationController/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B8CF36AA1A6DBDB500A05F2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "BasicUsage(APTransactionProtocol)-NavigationController/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B8CF36AC1A6DBDB500A05F2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BasicUsage(APTransactionProtocol)-NavigationControllerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicUsage(APTransactionProtocol)-NavigationController.app/BasicUsage(APTransactionProtocol)-NavigationController";
+			};
+			name = Debug;
+		};
+		B8CF36AD1A6DBDB500A05F2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BasicUsage(APTransactionProtocol)-NavigationControllerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasicUsage(APTransactionProtocol)-NavigationController.app/BasicUsage(APTransactionProtocol)-NavigationController";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B8CF36801A6DBDB500A05F2D /* Build configuration list for PBXProject "BasicUsage(APTransactionProtocol)-NavigationController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8CF36A61A6DBDB500A05F2D /* Debug */,
+				B8CF36A71A6DBDB500A05F2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8CF36A81A6DBDB500A05F2D /* Build configuration list for PBXNativeTarget "BasicUsage(APTransactionProtocol)-NavigationController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8CF36A91A6DBDB500A05F2D /* Debug */,
+				B8CF36AA1A6DBDB500A05F2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B8CF36AB1A6DBDB500A05F2D /* Build configuration list for PBXNativeTarget "BasicUsage(APTransactionProtocol)-NavigationControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8CF36AC1A6DBDB500A05F2D /* Debug */,
+				B8CF36AD1A6DBDB500A05F2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B8CF367D1A6DBDB500A05F2D /* Project object */;
+}

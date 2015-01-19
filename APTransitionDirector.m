@@ -506,10 +506,10 @@ static NSMutableDictionary * gestureDict=nil;
     [self finishInteractiveTransition];
     [_context completeTransition:YES];
         [_context containerView].layer.speed=1;
-    if (self.interactiveComplitionBlock) {
-        
-        self.interactiveComplitionBlock(self);
-    }
+//    if (self.interactiveComplitionBlock) {
+//        
+//        self.interactiveComplitionBlock(self);
+//    }
 }
 
 
@@ -524,9 +524,9 @@ static NSMutableDictionary * gestureDict=nil;
     [self cancelInteractiveTransition];
     [_context completeTransition:NO];
     [_context containerView].layer.speed=1;
-    if (self.interactiveComplitionBlock) {
-        self.interactiveComplitionBlock(self);
-    }
+//    if (self.interactiveComplitionBlock) {
+//        self.interactiveComplitionBlock(self);
+//    }
 }
 - (void)updateCancelAnimation {
     NSTimeInterval timeOffset = [self timeOffset]-[_displayLink duration];
@@ -551,6 +551,12 @@ static NSMutableDictionary * gestureDict=nil;
 -(void)animationEnded:(BOOL)transitionCompleted{
     
     
+    if (self.interactive) {
+        if (self.interactiveComplitionBlock) {
+    
+        }
+    }
+
 
 }
 #pragma mark - transaction delegate
@@ -581,25 +587,40 @@ static NSMutableDictionary * gestureDict=nil;
     }
     if (self.animBlock) {
         failed=NO;
+        
+             __weak typeof(self) weakSelf = self;
+        
         self.animBlock(self,^{
            
             
             if (!self.isInteractive) {
                     [transitionContext completeTransition:YES];
+            }else{
+                
+                self.interactiveComplitionBlock(weakSelf);
             }
        
         });
     }
     if (self.delegate) {
         failed=NO;
+        __weak typeof(self) weakSelf = self;
         [self.delegate animationTransition:self andComplitionBlock:^{
+            
+                        if (!self.isInteractive) {
             [transitionContext finishInteractiveTransition];
             [transitionContext completeTransition:YES];
+                        }else{
+                            
+                            self.interactiveComplitionBlock(weakSelf);
+                        }
         }];
     }
     if (failed) {
+          //    if (!self.isInteractive) {
         [transitionContext finishInteractiveTransition];
         [transitionContext completeTransition:YES];
+           //   }
     }
 }
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -610,7 +631,13 @@ static NSMutableDictionary * gestureDict=nil;
 }
 #pragma mark - navigation controller delegate
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
-    _navigationOperation=operation;
+    
+    if (operation==UINavigationControllerOperationPush) {
+        _transitionOperation=APDirectorOperationPush;
+    }else if (operation==UINavigationControllerOperationPop){
+        _transitionOperation=APDirectorOperationPop;
+    }
+    
     return self;
 }
 
@@ -623,6 +650,9 @@ static NSMutableDictionary * gestureDict=nil;
 - (id <UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController
             animationControllerForTransitionFromViewController:(UIViewController *)fromVC
                                               toViewController:(UIViewController *)toVC {
+    
+    _transitionOperation=APDirectorOperationSelectIndex;
+    
     return self;
 }
 
@@ -632,10 +662,12 @@ static NSMutableDictionary * gestureDict=nil;
 
 #pragma mark - uiviewcontroller transactioning delegate
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    _transitionOperation=APDirectorOperationPresent;
     return self;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    _transitionOperation=APDirectorOperationDismiss;
     return self;
 }
 - (id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator{
