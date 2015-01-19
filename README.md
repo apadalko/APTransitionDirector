@@ -213,7 +213,7 @@ case UIGestureRecognizerStateEnded: {
 ....
 ```
 Ok, so now u have nice interactive and static transition.
-<img src="https://raw.githu2busercontent.com/romaonthego/RESideMenu/master/Demo.gif?2" alt="RESideMenu Screenshot" width="480" height="360"/>
+<img src="https://github.com/apadalko/APTransitionDirector/blob/master/Examples/gifs/nav.gif" alt="Basic Usage NavigayionController" width="480" height="360"/>
 
 
 
