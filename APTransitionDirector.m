@@ -475,11 +475,12 @@ static NSMutableDictionary * gestureDict=nil;
     [_context completeTransition:NO];
 
 }
--(void)endInteractiveTranscation:(BOOL)cancelled complition:(void (^)())complitBlock {
+-(void)endInteractiveTranscation:(BOOL)didComplete complition:(void (^)())complitBlock {
     if (complitBlock) {
        self.interactiveComplitionBlock=complitBlock;
     }
-    if (cancelled) {
+    
+    if (!didComplete) {
      
             _interactiveState=APDirectorInteractiveStateCanceling;
       

@@ -197,7 +197,7 @@ enum APDirectorInteractiveState{
  * run to end interactive transaction
  *
  */
--(void)endInteractiveTranscation:(BOOL)cancelled complition:(void (^)())complitBlock ;
+-(void)endInteractiveTranscation:(BOOL)didComplete complition:(void (^)())complitBlock ;
 
 @property (nonatomic)CFTimeInterval timeOffset;
 

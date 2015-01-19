@@ -25,13 +25,14 @@ director.animBlock=^(APTransitionDirector * director ,void(^comlitBlock)() ){
 
 };
 self.navigationController.delegate=director;
-[self.navigationController pushViewController:viewController animated:YES]
+[self.navigationController pushViewController:[[BUViewController2 alloc] init] animated:YES]
 self.navigationController.delegate=nil;
 ```
 Now you have the animation block ,where u could use any animations that u want,to get all needed views use the
 APFastAcces category of APTransitionDirector. Lets Add Some Cool Animations:
 
 ``` objective-c
+//BURootViewController.m
 APTransitionDirector * director=[[APTransitionDirector alloc]init];
 director.animDuration=0.5; //animation duration for director
 director.animBlock=^(APTransitionDirector * director ,void(^comlitBlock)() ){
@@ -60,8 +61,98 @@ self.navigationController.delegate=director;
 self.navigationController.delegate=nil;
 ```
 Pls note: When u use non interactive animations dont forget to call the complitBlock
+Also u could use `@property (nonatomic)float animDuration;` to make all things clear.
 
-Also u could use @property `(nonatomic)float animDuration;` to make all things clear.
+Ok,Great! But we could make it better by adding some interactive transitions.
+Let add EdgePanGesture to our navigationController:
+``` objective-c
+//BURootViewController.m
+UIScreenEdgePanGestureRecognizer * panGesture = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(screenPan:)];
+panGesture.edges=UIRectEdgeLeft;
+[self.navigationController.view addGestureRecognizer:panGesture];
+``` 
+and the screenPan Method:
+``` objective-c
+//BURootViewController.m
+- (void)screenPan:(UIGestureRecognizer*)pan {
+    UIGestureRecognizerState state = pan.state;
+    CGPoint location = [pan locationInView:self.view];
+    static CGPoint firstTouch;
+    static float fullDistance=0;
+    static APTransitionDirector * animDirector=nil;
+
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+
+            fullDistance=self.view.frame.size.width;
+            firstTouch=location;
+            
+            animDirector=[[APTransitionDirector alloc]init];
+            animDirector.interactive=YES;
+            animDirector.animDuration=0.33;
+            [self.navigationController setDelegate:animDirector];
+
+            animDirector.animBlock=^(APTransitionDirector * director,void(^comlitBlock)() ){
+
+            UIView* toView = [director toView];
+            UIView* fromView= [director fromView];
+            UIView *  containerView=  [director containerView];
+
+            [containerView insertSubview:toView belowSubview:fromView];
+
+            toView.transform=CGAffineTransformMakeScale(1.0, 1.0);
+            [toView setFrame:containerView.bounds];
+            toView.transform=CGAffineTransformMakeScale(0.9, 0.9);
+
+            [ UIView animateWithDuration:director.animDuration
+                animations:^{
+
+                [fromView setFrame:CGRectMake(fromView.frame.size.width, fromView.frame.origin.y, fromView.frame.size.width, fromView.frame.size.height)];
+                toView.transform=CGAffineTransformMakeScale(1.0, 1.0);
+                }];
+            };
+            [self.navigationController popViewControllerAnimated:YES];
+        {
+        case  UIGestureRecognizerStateChanged:
+        {
+        //update percent for every step
+        [animDirector setPercent:location.x/fullDistance];
+            break;
+        }
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded: {
+
+            BOOL didComplete=NO;
+            if (pan.state==UIGestureRecognizerStateEnded){
+                didComplete = (mainD/d)>0.5?NO:YES;
+            }
+
+            [animDirector endInteractiveTranscation:didComplete complition:^{
+            animDirector = nil;
+            self.navigationController.delegate = nil;
+            }];
+
+            break;
+        }
+        default: {
+
+            break;
+        }
+
+    }
+    
+}
+``` 
+So the main things that u should do:
+1.set director as interactive `animDirector.interactive=YES;`
+2.update director percent  `[animDirector setPercent:location.x/fullDistance];`
+3.and run director interactive endingMethod: `[animDirector endInteractiveTranscation:didComplete complition:^{}];`
+
+That looks nice but wee need some more, lets use the `@property (copy)UpdateBlock interactiveUpdateBlock`,
+so we could create unique interactive transaction
+
+Ok, so now u have nice interactive and static transition.
 
 
 
