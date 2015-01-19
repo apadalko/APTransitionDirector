@@ -25,7 +25,7 @@ director.animBlock=^(APTransitionDirector * director ,void(^comlitBlock)() ){
 
 };
 self.navigationController.delegate=director;
-[self.navigationController pushViewController:[[BUViewController2 alloc] init] animated:YES]
+[self.navigationController pushViewController:[[BUViewController alloc] init] animated:YES]
 self.navigationController.delegate=nil;
 ```
 Now you have the animation block ,where u could use any animations that u want,to get all needed views use the
@@ -77,76 +77,77 @@ and the screenPan Method:
 ``` objective-c
 //BURootViewController.m
 - (void)screenPan:(UIGestureRecognizer*)pan {
-CGPoint location = [pan locationInView:self.view];
-static CGPoint firstTouch;
-static float fullDistance=0;
-static APTransitionDirector * animDirector=nil;
+    CGPoint location = [pan locationInView:self.view];
+    static CGPoint firstTouch;
+    static float fullDistance=0;
+    static APTransitionDirector * animDirector=nil;
 
-switch (pan.state) {
-case UIGestureRecognizerStateBegan:
-{
+    switch (pan.state) {
+        case UIGestureRecognizerStateBegan:
+        {
 
-fullDistance=self.navigationController.view.frame.size.width;
-firstTouch=location;
+            fullDistance=self.navigationController.view.frame.size.width;
+            firstTouch=location;
 
-animDirector=[[APTransitionDirector alloc]init];
-animDirector.interactive=YES;
-animDirector.animDuration=0.33;
-[self.navigationController setDelegate:animDirector];
+            animDirector=[[APTransitionDirector alloc]init];
+            animDirector.interactive=YES;
+            animDirector.animDuration=0.33;
+            [self.navigationController setDelegate:animDirector];
 
-animDirector.animBlock=^(APTransitionDirector * director,void(^comlitBlock)() ){
+            animDirector.animBlock=^(APTransitionDirector * director,void(^comlitBlock)() ){
 
-UIView* toView = [director toView];
-UIView* fromView= [director fromView];
-UIView *  containerView=  [director containerView];
+                UIView* toView = [director toView];
+                UIView* fromView= [director fromView];
+                UIView *  containerView=  [director containerView];
 
-[containerView insertSubview:toView belowSubview:fromView];
-toView.transform=CGAffineTransformMakeScale(1.0, 1.0);
-[toView setFrame:containerView.bounds];
+                [containerView insertSubview:toView belowSubview:fromView];
+                toView.transform=CGAffineTransformMakeScale(1.0, 1.0);
+                [toView setFrame:containerView.bounds];
 
 
-toView.transform=CGAffineTransformMakeScale(0.9, 0.9);
+                toView.transform=CGAffineTransformMakeScale(0.9, 0.9);
 
-[ UIView animateWithDuration:director.animDuration
-animations:^{
+                [ UIView animateWithDuration:director.animDuration
+                    animations:^{
 
-[fromView setFrame:CGRectMake(fromView.frame.size.width, fromView.frame.origin.y, fromView.frame.size.width, fromView.frame.size.height)];
-toView.transform=CGAffineTransformMakeScale(1.0, 1.0);
+                    [fromView setFrame:CGRectMake(fromView.frame.size.width, fromView.frame.origin.y, fromView.frame.size.width, fromView.frame.size.height)];
+                    toView.transform=CGAffineTransformMakeScale(1.0, 1.0);
 
-}completion:^(BOOL finished) {
+                }completion:^(BOOL finished) {
 
-}];
-};
-[self.navigationController popViewControllerAnimated:YES];
-case  UIGestureRecognizerStateChanged:
-{
-//update percent for every step
-[animDirector setPercent:location.x/fullDistance];
-break;
-}
-case UIGestureRecognizerStateCancelled:
-case UIGestureRecognizerStateEnded: {
+                }];
+            };
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        case  UIGestureRecognizerStateChanged:
+        {
+            //update percent for every step
+            [animDirector setPercent:location.x/fullDistance];
+            break;
+        }
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded: {
 
-BOOL didComplete=NO;
-if (pan.state==UIGestureRecognizerStateEnded){
-didComplete = (location.x/fullDistance)>0.5?YES:NO;
-}
+            BOOL didComplete=NO;
+            if (pan.state==UIGestureRecognizerStateEnded){
+            didComplete = (location.x/fullDistance)>0.5?YES:NO;
+            }
 
-//and end interactive transition at state ended or canceled
-[animDirector endInteractiveTranscation:didComplete complition:^{
-animDirector = nil;
-self.navigationController.delegate = nil;
-}];
+            //and end interactive transition at state ended or canceled
+            [animDirector endInteractiveTranscation:didComplete complition:^{
+            animDirector = nil;
+            self.navigationController.delegate = nil;
+            }];
 
-break;
-}
-default: {
+            break;
+        }
+        default: {
 
-break;
-}
+            break;
+        }
 
-}
-}
+    }
+  }
 
 }
 ``` 
