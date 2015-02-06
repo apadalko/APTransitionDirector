@@ -682,11 +682,19 @@ static NSMutableDictionary * gestureDict=nil;
 }
 
 -(UIView *)fromView{
+       if (    [_context respondsToSelector:@selector(viewForKey:)])
     return [_context viewForKey:UITransitionContextFromViewKey];
+    else
+            return [[_context viewControllerForKey:UITransitionContextFromViewControllerKey] view];
 }
 
 -(UIView *)toView{
-    return [_context viewForKey:UITransitionContextToViewKey];
+    
+    if (    [_context respondsToSelector:@selector(viewForKey:)])
+       return [_context viewForKey:UITransitionContextToViewKey];   
+    else
+        return [[_context viewControllerForKey:UITransitionContextToViewControllerKey] view];
+
 }
 
 -(UIViewController *)fromViewController{
